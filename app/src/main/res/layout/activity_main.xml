@@ -14,6 +14,8 @@
         tools:layout_editor_absoluteY="8dp">
 
 
+
+
         <TextView
             android:id="@+id/txtLat"
             android:layout_width="wrap_content"
@@ -24,21 +26,21 @@
             android:textSize="40dip"></TextView>
 
         <TextView
-            android:id="@+id/txtSource"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="100dp"
-            android:text="Source ?"
-            android:textSize="40dip"></TextView>
-
-        <TextView
             android:id="@+id/txtLong"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="60dp"
             android:text="Long ?"
+            android:textSize="40dip"></TextView>
+
+        <TextView
+            android:id="@+id/txtSource"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="60dp"
+            android:text="Source ?"
             android:textSize="40dip"></TextView>
 
     </LinearLayout>

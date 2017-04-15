@@ -107,11 +107,11 @@ public class MainActivity extends Activity implements LocationListener {
         double lat = location.getLatitude();
         double lng = location.getLongitude();
 
-        
+        DecimalFormat formatter = new DecimalFormat("#,###.000");
+        String get_value = formatter.format(lat);
 
-
-        txtLat.setText(String.valueOf(lat));
-        txtLong.setText(String.valueOf(lng));
+        txtLat.setText(formatter.format(lat));
+        txtLong.setText(formatter.format(lng));
         txtSource.setText("Source = " + provider);
     }
 
