@@ -11,6 +11,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -22,6 +23,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class MainActivity extends Activity implements LocationListener {
 
@@ -34,6 +39,10 @@ public class MainActivity extends Activity implements LocationListener {
     private static final int CAMERA_REQUEST = 123;
     private ImageView imageView;
 
+    private static String android_id; //Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
+    private static double latStatic;
+    private static double lngStatic;
+    private static String nazwaZdjecia = "testowanazwazdjecia";
 
 
     @Override
@@ -80,6 +89,9 @@ public class MainActivity extends Activity implements LocationListener {
 
         imageView = (ImageView)this.findViewById(R.id.imageView1);
         Button photoButton = (Button) this.findViewById(R.id.zrobZdjecieButton);
+
+
+        android_id =Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
     }
 
 
@@ -116,6 +128,8 @@ public class MainActivity extends Activity implements LocationListener {
         double lat = location.getLatitude();
         double lng = location.getLongitude();
 
+        latStatic = lat;
+        lngStatic = lng;
         DecimalFormat formatter = new DecimalFormat("#,###.000");
         String get_value = formatter.format(lat);
 
@@ -152,7 +166,28 @@ public class MainActivity extends Activity implements LocationListener {
             (int requestCode, int resultCode, Intent data) {
         if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
             Bitmap photo = (Bitmap) data.getExtras().get("data");
+
             imageView.setImageBitmap(photo);
+
+
+            ExecutorService executor = Executors.newFixedThreadPool(1);
+            Callable<StringBuilder> watek = new Wysylacz(latStatic, lngStatic, android_id, nazwaZdjecia, "");
+
+
+            final Future<StringBuilder> result = executor.submit(watek);
+            StringBuilder strona = new StringBuilder();
+            try {
+                strona = result.get();
+            } catch (InterruptedException e) {
+
+            } catch (Exception e) {
+
+            }
         }
+    }
+
+    private void wrzucWspolrzedneNaServer()
+    {
+
     }
 }
