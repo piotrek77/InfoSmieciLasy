@@ -3,7 +3,9 @@ package com.oslowski.infosmiecilasy;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
@@ -14,6 +16,9 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
@@ -26,6 +31,9 @@ public class MainActivity extends Activity implements LocationListener {
     private TextView txtSource;
     private LocationManager locationManager;
     private String provider;
+    private static final int CAMERA_REQUEST = 123;
+    private ImageView imageView;
+
 
 
     @Override
@@ -70,7 +78,8 @@ public class MainActivity extends Activity implements LocationListener {
             onLocationChanged(location);
         }
 
-
+        imageView = (ImageView)this.findViewById(R.id.imageView1);
+        Button photoButton = (Button) this.findViewById(R.id.zrobZdjecieButton);
     }
 
 
@@ -131,4 +140,19 @@ public class MainActivity extends Activity implements LocationListener {
     }
 
 
+    public void zrobZdjecieOnClick(View view) {
+        Intent cameraIntent = new Intent
+                (android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(cameraIntent, CAMERA_REQUEST);
+
+    }
+
+
+    protected void onActivityResult
+            (int requestCode, int resultCode, Intent data) {
+        if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+            imageView.setImageBitmap(photo);
+        }
+    }
 }

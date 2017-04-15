@@ -43,6 +43,21 @@
             android:text="Source ?"
             android:textSize="40dip"></TextView>
 
+        <Button
+            android:id="@+id/zrobZdjecieButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:onClick="zrobZdjecieOnClick"
+            android:text="@string/zrobZdjecie" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="12dp"
+            app:srcCompat="@android:color/background_dark" />
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
