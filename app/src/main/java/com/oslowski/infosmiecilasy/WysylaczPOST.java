@@ -27,7 +27,7 @@ public class WysylaczPOST implements Callable<StringBuilder> {
     }
 
 
-    
+
 
     private void wyslij()
     {

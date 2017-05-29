@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Info smieci lasy</string>
     <string name="zrobZdjecie">Zrób zdjęcie</string>
+    <string name="szerokosc">Szerokość</string>
+    <string name="dlugosc">Długość</string>
+    <string name="dokladnosc">Dokładność</string>
+    <string name="zrodlo">Źródło</string>
 </resources>

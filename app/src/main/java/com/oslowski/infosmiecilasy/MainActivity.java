@@ -34,6 +34,7 @@ public class MainActivity extends Activity implements LocationListener {
     private TextView txtLat;
     private TextView txtLong;
     private TextView txtSource;
+    private TextView txtDokladnosc;
     private LocationManager locationManager;
     private String provider;
     private static final int CAMERA_REQUEST = 123;
@@ -54,6 +55,7 @@ public class MainActivity extends Activity implements LocationListener {
         txtLat = (TextView) findViewById(R.id.txtLat);
         txtLong = (TextView) findViewById(R.id.txtLong);
         txtSource = (TextView) findViewById(R.id.txtSource);
+        txtDokladnosc = (TextView)  findViewById(R.id.txtDokladnosc);
 // Initialize locationManager
         locationManager = (LocationManager)
                 getSystemService(Context.LOCATION_SERVICE);
@@ -127,6 +129,7 @@ public class MainActivity extends Activity implements LocationListener {
     public void onLocationChanged(Location location) {
         double lat = location.getLatitude();
         double lng = location.getLongitude();
+        float dokladnosc = location.getAccuracy();
 
         latStatic = lat;
         lngStatic = lng;
@@ -135,7 +138,9 @@ public class MainActivity extends Activity implements LocationListener {
 
         txtLat.setText(formatter.format(lat));
         txtLong.setText(formatter.format(lng));
-        txtSource.setText("Source = " + provider);
+        txtSource.setText(provider);
+        txtDokladnosc.setText(formatter.format(dokladnosc));
+
     }
 
     @Override
