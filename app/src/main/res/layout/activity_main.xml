@@ -4,129 +4,127 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.oslowski.infosmiecilasy.MainActivity">
-
-    <LinearLayout
-        android:layout_width="359dp"
-        android:layout_height="206dp"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="18dp"
-        tools:layout_editor_absoluteY="297dp">
+    tools:context="com.oslowski.infosmiecilasy.MainActivity"
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="0dp">
 
 
-        <Button
-            android:id="@+id/zrobZdjecieButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+    <Button
+        android:id="@+id/zrobZdjecieButton"
+        android:layout_width="0dp"
+        android:layout_height="173dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:onClick="zrobZdjecieOnClick"
+        android:text="@string/zrobZdjecie"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1" />
 
-            android:onClick="zrobZdjecieOnClick"
-            android:text="@string/zrobZdjecie" />
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dlugosc"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="16dp" />
 
-        <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginTop="12dp"
-            app:srcCompat="@android:color/background_dark" />
+    <TextView
+        android:id="@+id/txtLong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp"
+        app:layout_constraintLeft_toRightOf="@+id/textView4"
+        android:layout_marginLeft="49dp" />
 
-    </LinearLayout>
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/szerokosc"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txtLat"
+        tools:layout_constraintBaseline_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="365dp"
-        android:layout_height="278dp"
-        tools:layout_editor_absoluteX="10dp"
-        tools:layout_editor_absoluteY="7dp">
+    <TextView
+        android:id="@+id/txtLat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        android:layout_marginStart="34dp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtDokladnosc"
+        android:layout_marginTop="65dp"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="66dp"
+        app:layout_constraintTop_toTopOf="@+id/txtLong"
+        app:layout_constraintLeft_toRightOf="@+id/textView7"
+        android:layout_marginLeft="34dp" />
 
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/zrodlo"
-            android:text="TextView"
-            tools:layout_editor_absoluteX="194dp"
-            tools:layout_editor_absoluteY="187dp"
-            tools:text="@string/dlugosc" />
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dokladnosc"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txtDokladnosc"
+        tools:layout_constraintBaseline_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="16dp" />
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@d"
-            android:text="TextView"
-            tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="187dp"
-            tools:text="@string/dlugosc" />
+    <TextView
+        android:id="@+id/txtDokladnosc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/txtSource"
+        android:layout_marginStart="26dp"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="29dp"
+        app:layout_constraintLeft_toRightOf="@+id/textView9"
+        android:layout_marginLeft="26dp" />
 
-        <TextView
-            android:id="@+id/txtDokladnosc"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/zrodlo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="285dp"
+        android:layout_marginStart="16dp"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
-
-            android:layout_row="7"
-            android:text="Source ?"
-            android:textSize="40dip"
-            tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="214dp"></TextView>
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/szerokosc"
-            android:text="TextView"
-            tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="5dp"
-            tools:text="@string/dlugosc" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="89dp"
-            tools:text="@string/dlugosc" />
-
-        <TextView
-            android:id="@+id/txtSource"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-
-
-            android:layout_row="7"
-            android:text="Source ?"
-            android:textSize="40dip"
-            tools:layout_editor_absoluteY="214dp"
-            tools:layout_editor_absoluteX="194dp"></TextView>
-
-        <TextView
-            android:id="@+id/txtLong"
-            android:layout_width="349dp"
-            android:layout_height="0dp"
-
-            android:layout_column="0"
-
-            android:layout_row="2"
-            android:text="Long ?"
-            android:textSize="40dip"
-            tools:layout_editor_absoluteY="115dp"
-            tools:layout_editor_absoluteX="8dp"></TextView>
-
-        <TextView
-            android:id="@+id/txtLat"
-            android:layout_width="349dp"
-            android:layout_height="wrap_content"
-
-            android:layout_column="2"
-
-            android:layout_row="1"
-            android:text="Lat ?"
-            android:textSize="40dip"
-            tools:layout_editor_absoluteY="31dp"
-            tools:layout_editor_absoluteX="8dp"></TextView>
-    </android.support.constraint.ConstraintLayout>
-
+    <TextView
+        android:id="@+id/txtSource"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="306dp"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="@+id/txtDokladnosc"
+        android:layout_marginLeft="0dp" />
 </android.support.constraint.ConstraintLayout>
