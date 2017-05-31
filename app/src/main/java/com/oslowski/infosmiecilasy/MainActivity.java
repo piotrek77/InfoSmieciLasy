@@ -21,6 +21,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.util.concurrent.Callable;
@@ -38,12 +42,12 @@ public class MainActivity extends Activity implements LocationListener {
     private LocationManager locationManager;
     private String provider;
     private static final int CAMERA_REQUEST = 123;
-    private ImageView imageView;
+    //private ImageView imageView;
 
     private static String android_id; //Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
     private static double latStatic;
     private static double lngStatic;
-    private static String nazwaZdjecia = "testowanazwazdjecia";
+    //private static String nazwaZdjecia = "testowanazwazdjecia";
 
 
     @Override
@@ -89,7 +93,7 @@ public class MainActivity extends Activity implements LocationListener {
             onLocationChanged(location);
         }
 
-        imageView = (ImageView)this.findViewById(R.id.imageView1);
+        //imageView = (ImageView)this.findViewById(R.id.imageView1);
         Button photoButton = (Button) this.findViewById(R.id.zrobZdjecieButton);
 
 
@@ -159,10 +163,12 @@ public class MainActivity extends Activity implements LocationListener {
     }
 
 
-    public void zrobZdjecieOnClick(View view) {
-        Intent cameraIntent = new Intent
+    public void zrobZdjecieOnClick(View view) throws JSONException {
+        /*Intent cameraIntent = new Intent
                 (android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(cameraIntent, CAMERA_REQUEST);
+        */
+        wrzucWspolrzedneNaServer();
 
     }
 
@@ -172,11 +178,11 @@ public class MainActivity extends Activity implements LocationListener {
         if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
             Bitmap photo = (Bitmap) data.getExtras().get("data");
 
-            imageView.setImageBitmap(photo);
+            //imageView.setImageBitmap(photo);
 
 
             ExecutorService executor = Executors.newFixedThreadPool(1);
-            Callable<StringBuilder> watek = new Wysylacz(latStatic, lngStatic, android_id, nazwaZdjecia, "");
+            Callable<StringBuilder> watek = new Wysylacz(latStatic, lngStatic, android_id, "", "");
 
 
             final Future<StringBuilder> result = executor.submit(watek);
@@ -188,11 +194,52 @@ public class MainActivity extends Activity implements LocationListener {
             } catch (Exception e) {
 
             }
+
         }
     }
 
-    private void wrzucWspolrzedneNaServer()
-    {
+    private void wrzucWspolrzedneNaServer() throws JSONException {
+
+
+
+            ExecutorService executor = Executors.newFixedThreadPool(1);
+            Callable<StringBuilder> watek = new Wysylacz(latStatic, lngStatic, android_id, "", "");
+
+
+            final Future<StringBuilder> result = executor.submit(watek);
+            StringBuilder strona = new StringBuilder();
+            try {
+                strona = result.get();
+            } catch (InterruptedException e) {
+
+            } catch (Exception e) {
+
+            }
+
+
+        if (strona.length()>0)
+
+        {
+            Context context = getApplicationContext();
+            CharSequence komunikat = strona;
+            try {
+                JSONObject komunikatJson = new JSONObject(strona.toString());
+                JSONObject komunikatJson2 = komunikatJson.getJSONObject("wynik:");
+                komunikat = komunikatJson2.toString();
+            }
+            catch (JSONException e)
+            {
+                komunikat = e.getMessage();
+            }
+            catch (Exception e)
+            {
+                komunikat = getString(R.string.jakisblad);
+            }
+
+
+            Toast toast = Toast.makeText(context, komunikat, Toast.LENGTH_LONG);
+            toast.show();
+        }
 
     }
 }

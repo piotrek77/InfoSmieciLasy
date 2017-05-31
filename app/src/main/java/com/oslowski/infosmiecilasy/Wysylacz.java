@@ -33,7 +33,7 @@ public class Wysylacz implements Callable<StringBuilder> {
 
 
 
-    private void sendGet() throws Exception {
+    private StringBuilder sendGet() throws Exception {
 
         String url = "http://31.14.136.242:5000/dodaj?lat="+lat+"&lng="+lng+"&android_id="+android_id+"&nazwaZdjecia="+nazwaZdjecia+"&sieczka="+sieczka;
 
@@ -62,23 +62,26 @@ public class Wysylacz implements Callable<StringBuilder> {
 
         //print result
         //System.out.println(response.toString());
-
+        StringBuilder wynik = new StringBuilder();
+        wynik.append(response);
+        return wynik;
     }
 
 
-    private void wyslij() throws Exception {
+    private StringBuilder wyslij() throws Exception {
         if ((lat!=0) && (lng!=0))
         {
-            sendGet();
+            return sendGet();
         }
+        return new StringBuilder();
     }
 
     @Override
     public StringBuilder call() throws Exception {
 
-        wyslij();
+        StringBuilder wynik =  wyslij();
 
 
-        return null;
+        return wynik;
     }
 }
