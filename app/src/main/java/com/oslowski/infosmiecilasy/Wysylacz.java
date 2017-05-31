@@ -18,24 +18,26 @@ public class Wysylacz implements Callable<StringBuilder> {
     private final String USER_AGENT = "Mozilla/5.0";
     private Double lat;
     private Double lng;
+    private Float dokladnosc;
     private String android_id;
     private String nazwaZdjecia;
     private String sieczka;
 
-    public Wysylacz(Double lat, Double lng, String android_id, String nazwaZdjecia, String sieczka)
+    public Wysylacz(Double lat, Double lng, String android_id, String nazwaZdjecia, String sieczka, Float dokladnosc)
     {
         this.lat = lat;
         this.lng = lng;
         this.android_id = android_id;
         this.nazwaZdjecia = nazwaZdjecia;
         this.sieczka = sieczka;
+        this.dokladnosc = dokladnosc;
     }
 
 
 
     private StringBuilder sendGet() throws Exception {
 
-        String url = "http://31.14.136.242:5000/dodaj?lat="+lat+"&lng="+lng+"&android_id="+android_id+"&nazwaZdjecia="+nazwaZdjecia+"&sieczka="+sieczka;
+        String url = "http://31.14.136.242:5000/dodaj?lat="+lat+"&lng="+lng+"&android_id="+android_id+"&nazwaZdjecia="+nazwaZdjecia+"&sieczka="+sieczka+"&dokladnosc="+dokladnosc;
 
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();

@@ -47,6 +47,7 @@ public class MainActivity extends Activity implements LocationListener {
     private static String android_id; //Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
     private static double latStatic;
     private static double lngStatic;
+    private static float dokladnoscStatic;
     //private static String nazwaZdjecia = "testowanazwazdjecia";
 
 
@@ -137,6 +138,7 @@ public class MainActivity extends Activity implements LocationListener {
 
         latStatic = lat;
         lngStatic = lng;
+        dokladnoscStatic = dokladnosc;
         DecimalFormat formatter = new DecimalFormat("#,###.000");
         String get_value = formatter.format(lat);
 
@@ -182,7 +184,7 @@ public class MainActivity extends Activity implements LocationListener {
 
 
             ExecutorService executor = Executors.newFixedThreadPool(1);
-            Callable<StringBuilder> watek = new Wysylacz(latStatic, lngStatic, android_id, "", "");
+            Callable<StringBuilder> watek = new Wysylacz(latStatic, lngStatic, android_id, "", "",new Float(0.0));
 
 
             final Future<StringBuilder> result = executor.submit(watek);
@@ -203,7 +205,7 @@ public class MainActivity extends Activity implements LocationListener {
 
 
             ExecutorService executor = Executors.newFixedThreadPool(1);
-            Callable<StringBuilder> watek = new Wysylacz(latStatic, lngStatic, android_id, "", "");
+            Callable<StringBuilder> watek = new Wysylacz(latStatic, lngStatic, android_id,"" , "", dokladnoscStatic);
 
 
             final Future<StringBuilder> result = executor.submit(watek);
@@ -224,8 +226,8 @@ public class MainActivity extends Activity implements LocationListener {
             CharSequence komunikat = strona;
             try {
                 JSONObject komunikatJson = new JSONObject(strona.toString());
-                JSONObject komunikatJson2 = komunikatJson.getJSONObject("wynik:");
-                komunikat = komunikatJson2.toString();
+                //JSONObject komunikatJson2 = komunikatJson.getJSONObject("wynik:");
+                komunikat = komunikatJson.getString("wynik:").toString();
             }
             catch (JSONException e)
             {
